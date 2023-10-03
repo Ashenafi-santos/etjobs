@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="453" height="479" viewBox="0 0 453 479">
+  <rect id="Rectangle_187" data-name="Rectangle 187" width="453" height="479" rx="15" fill="#fff"/>
+  <rect id="Rectangle_186" data-name="Rectangle 186" width="343" height="88" rx="11" transform="translate(55 34)" fill="#edeffc"/>
+  <rect id="Rectangle_185" data-name="Rectangle 185" width="343" height="81" rx="11" transform="translate(55 204)" fill="#ececec"/>
+  <rect id="Rectangle_188" data-name="Rectangle 188" width="343" height="81" rx="11" transform="translate(55 364)" fill="#ececec"/>
+  <text id="Create_an_Account_" data-name="Create an Account   " transform="translate(83 87)" fill="#172671" font-size="29" font-family="Tahoma-Bold, Tahoma" font-weight="700"><tspan x="0" y="0" xml:space="preserve">Create an Account   </tspan></text>
+  <text id="Full_Name" data-name="Full Name" transform="translate(55 174)" fill="#c4c4c8" font-size="24" font-family="Tahoma"><tspan x="0" y="0">Full Name</tspan></text>
+  <text id="Email_Address" data-name="Email Address" transform="translate(55 334)" fill="#c4c4c8" font-size="24" font-family="Tahoma"><tspan x="0" y="0">Email Address</tspan></text>
+</svg>

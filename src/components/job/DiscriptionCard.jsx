@@ -1,93 +1,119 @@
 import React from "react";
 import { Kuraz } from "../../assets/images";
+import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const DiscriptionCard = () => {
-    return (
-        <div className="w-[900px] bg-white justify-center items-center p-10 rounded-3xl border border-[#707070]">
-            <div className="card-section flex flex-col gap-5">
-                <div className="logo flex">
-                    <img src={Kuraz} alt="logo" className="w-[110px]" />
-                    <h1 className="text-[34px]">Figma Designer</h1>
-                </div>
-                <div className="overview flex flex-col gap-5 ">
-                    <h1 className="font-bold text-[20px]">Job Overview</h1>
-                    <p>
-                        We are seeking a talented and creative Figma Designer to
-                        join our design team. As a Figma Designer, you will play
-                        a crucial role in shaping the visual and interactive
-                        aspects of our digital products and experiences. You
-                        will collaborate closely with cross-functional teams,
-                        including product managers, developers, and UX/UI
-                        designers, to translate ideas and concepts into visually
-                        appealing and user-friendly designs.
-                    </p>
-                </div>
-                <div className="skills flex flex-col gap-5 text-[20px]">
-                    <h1 className="font-bold">Skills</h1>
-                    <div className="flex gap-5">
-                        <p className="bg-[#E8EDEB] text-center w-[200px] p-2 rounded-lg">
-                            UI designer
-                        </p>
-                        <p className="bg-[#E8EDEB] p-2 rounded-lg text-center w-[200px]">
-                            Figma
-                        </p>
-                        <p className="bg-[#E8EDEB] p-2 rounded-lg text-center w-[200px]">
-                            Landing Page
-                        </p>
-                    </div>
-                </div>
-                <div className="qualification flex flex-col gap-5">
-                    <h1 className="font-bold text-[20px]">Qualification</h1>
-                    <div>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                        <p>
-                            - Proven experience as a Figma Designer or similar
-                            role, with a portfolio showcasing your design work.
-                        </p>
-                    </div>
-                </div>
-                <div className="btn flex justify-end">
-                    <a
-                        href=""
-                        className="bg-[#0CB657] p-2 text-white  rounded-lg"
-                    >
-                        Submit Propsal
-                    </a>
-                </div>
-            </div>
+const DiscriptionCard = ({ job, employee, setDiscription }) => {
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    if (employee) {
+      if (employee.user.role == "employee") {
+        navigate("/apply", { state: { job: job, employee: employee.user } });
+        setDiscription("hidden");
+      } else {
+        toast.error("You have to register as an employee to Apply!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    } else {
+      toast.error("You have to register as an employee to Apply!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  return (
+    <div className="max-w-[900px] bg-white justify-center items-center p-10 rounded-3xl border border-[#707070]">
+      <div className="card-section flex flex-col gap-5">
+        <div className="logo flex items-center gap-6">
+          <img src={Kuraz} alt="logo" className="w-[110px]" />
+          <div className="flex flex-col gap-3">
+            <h1 className="text-[34px]">{job.required_position}</h1>
+            <button
+              onClick={handleClick}
+              className="bg-primary max-w-[200px] text-white p-3 rounded-lg"
+            >
+              Apply Now
+            </button>
+          </div>
         </div>
-    );
+        <div className="flex flex-col gap-5">
+          <div>
+            <h1 className="text-2xl font-bold">Job Detais</h1>
+          </div>
+          <div className="flex w-full gap-28">
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Job type</h1>
+                <p className="font-bold bg-primaryLightBackground  text-center p-2 rounded-lg">
+                  {job.job_type}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Catagory</h1>
+                <p className="font-bold bg-primaryLightBackground  text-center p-2 rounded-lg">
+                  {job.category}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Expriance Level</h1>
+                <p className="font-bold bg-primaryLightBackground text-center p-2 rounded-lg">
+                  {job.experience}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Education</h1>
+                <p className="font-bold bg-primaryLightBackground  text-center p-2 rounded-lg">
+                  {job.education}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Salary</h1>
+                <p className="font-bold bg-primaryLightBackground text-center p-2 rounded-lg">
+                  {job.salary}
+                </p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h1 className="text-xl">Shift and Schedule</h1>
+                <p className="font-bold bg-primaryLightBackground w-[100px] text-center p-2 rounded-lg">
+                  {job.shift}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-5">
+            <div>
+              <h1 className="text-2xl  font-bold">Job Description</h1>
+            </div>
+
+            <div>
+              <p className="text-lg max-w-[600px]">{job.details}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ToastContainer />
+    </div>
+  );
 };
 
 export default DiscriptionCard;

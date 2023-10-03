@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
 import Footer from "../Footer";
+import { BiCircle } from "react-icons/bi";
 import { BsFillPersonFill, BsTelephone } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
@@ -9,16 +10,17 @@ import { useNavigate } from "react-router-dom";
 import { AiFillEye } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 
-const Register = () => {
-  const [company_name, setCompany_name] = useState("");
+const RegisterEmployee = () => {
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfimation] = useState("");
+  const navigate = useNavigate();
+
   const [v, setV] = useState("password");
   const [v2, setV2] = useState("password");
-
-  const navigate = useNavigate();
 
   const toggleV = () => {
     if (v == "password") {
@@ -40,15 +42,16 @@ const Register = () => {
 
     if (password === password_confirmation) {
       const data = {
-        company_name,
+        fname,
+        lname,
         email,
         phone,
         password,
         password_confirmation,
       };
 
-      await axios
-        .post("/api/employer/register", data)
+      const res = await axios
+        .post("/api/employee/register", data)
         .then((res) => {
           toast.success("Successfully created Login to your Account", {
             position: "top-center",
@@ -93,49 +96,63 @@ const Register = () => {
       <Header />
       <div className="h-[900px]">
         <div className="bg-secondaryLightBackground flex justify-center items-center h-full border-b border-black">
-          <div className="card p-6 rounded-2xl bg-primaryLightBackground w-[500px] h-auto flex flex-col justify-center items-center">
+          <div className="card p-6 rounded-2xl bg-primaryLightBackground w-[600px] h-auto flex flex-col justify-center items-center">
             <h1 className="text-primary text-[30px] font-bold">WELLCOME</h1>
             <h1 className="text-[18px]">
-              Create your account and Hire Candidates
+              Create your account and apply for jobs
             </h1>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 ">
               <div className="py-4">
                 <p className="font-bold">Personal Details</p>
                 <p className="text-[14px]">
                   Please fill out the required information in the field below
                 </p>
               </div>
-              <div className="flex flex-col justify-center items-center gap-5">
-                <div className="input flex items-center gap-5 border-b border-borderbg">
-                  <BsFillPersonFill size={24} />
-                  <input
-                    type="text"
-                    className="p-2 bg-primaryLightBackground"
-                    placeholder="Company's Name"
-                    onChange={(e) => setCompany_name(e.target.value)}
-                    required
-                  />
+              <div className=" flex-col justify-center items-center space-x-2 space-y-4">
+                <div className="flex justify-center items-center gap-3">
+                  <div className="input flex justify-center items-center gap-5 border-b border-borderbg">
+                    <BsFillPersonFill size={24} />
+                    <input
+                      type="text"
+                      className="p-2 bg-primaryLightBackground"
+                      placeholder="First Name"
+                      required
+                      onChange={(e) => setFname(e.target.value)}
+                    />
+                  </div>
+                  <div className="input flex items-center gap-5 border-b border-borderbg">
+                    <BsFillPersonFill size={24} />
+                    <input
+                      type="text"
+                      className="p-2 bg-primaryLightBackground"
+                      placeholder="Last Name"
+                      required
+                      onChange={(e) => setLname(e.target.value)}
+                    />
+                  </div>
                 </div>
-                <div className="input flex items-center gap-5 border-b border-borderbg">
-                  <MdEmail size={24} />
-                  <input
-                    type="email"
-                    className=" p-2 bg-primaryLightBackground"
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="input flex items-center gap-5 border-b border-borderbg">
-                  <BsTelephone size={24} />
-                  <input
-                    type="number"
-                    className="p-2 bg-primaryLightBackground"
-                    placeholder="Contact Number"
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                  />
+                <div className="flex items-center gap-3">
+                  <div className="input flex items-center gap-5 border-b border-borderbg">
+                    <MdEmail size={24} />
+                    <input
+                      type="email"
+                      className=" p-2 bg-primaryLightBackground"
+                      placeholder="Email"
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="input flex items-center gap-5 border-b border-borderbg">
+                    <BsTelephone size={24} />
+                    <input
+                      type="number"
+                      className="p-2 bg-primaryLightBackground"
+                      placeholder="Contact Number"
+                      required
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="py-4">
@@ -148,24 +165,24 @@ const Register = () => {
                 <div className="input flex items-center gap-5 border-b border-borderbg">
                   <CiLock size={24} />
                   <input
-                    type={v}
+                    type={v2}
                     className="p-2 bg-primaryLightBackground"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
                     required
+                    onChange={(e) => setPassword(e.target.value)}
                   />
-                  <AiFillEye onClick={toggleV} />
+                  <AiFillEye onClick={toggleV2} />
                 </div>
                 <div className="input flex items-center gap-5 border-b border-borderbg">
                   <CiLock size={24} />
                   <input
-                    type={v2}
+                    type={v}
                     className="p-2 bg-primaryLightBackground"
                     placeholder="Confirm Password"
-                    onChange={(e) => setPasswordConfimation(e.target.value)}
                     required
+                    onChange={(e) => setPasswordConfimation(e.target.value)}
                   />
-                  <AiFillEye onClick={toggleV2} />
+                  <AiFillEye onClick={toggleV} />
                 </div>
               </div>
               <div>
@@ -178,8 +195,8 @@ const Register = () => {
               </div>
 
               <div className="flex justify-center items-center gap-3 mt-4">
-                <p>Sign Up as a Empolyee</p>
-                <a href="/signup-e" className="text-primary font-semibold ">
+                <p>Sign Up as a Empolyer</p>
+                <a href="/signup" className="text-primary font-semibold ">
                   Click Here
                 </a>
               </div>
@@ -193,4 +210,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterEmployee;

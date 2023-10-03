@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="233" height="52" viewBox="0 0 233 52"><g transform="translate(-130 -28)"><text transform="translate(229 66)" font-size="35" font-family="Tahoma-Bold, Tahoma" font-weight="700"><tspan x="0" y="0">ETJOBS</tspan></text><g transform="translate(130 28)" fill="#13880f" stroke="#707070" stroke-width="1"><ellipse cx="27.5" cy="26" rx="27.5" ry="26" stroke="none"/><ellipse cx="27.5" cy="26" rx="27" ry="25.5" fill="none"/></g><g transform="translate(163 28)" fill="#0fb357" stroke="#707070" stroke-width="1"><ellipse cx="27.5" cy="26" rx="27.5" ry="26" stroke="none"/><ellipse cx="27.5" cy="26" rx="27" ry="25.5" fill="none"/></g></g></svg>
+<svg id="Group_11" data-name="Group 11" xmlns="http://www.w3.org/2000/svg" width="233" height="52" viewBox="0 0 233 52">
+  <text id="ETJOBS" transform="translate(99 38)" font-size="35" font-family="Tahoma-Bold, Tahoma" font-weight="700"><tspan x="0" y="0">ETJOBS</tspan></text>
+  <g id="Ellipse_1" data-name="Ellipse 1" fill="#172671" stroke="#707070" stroke-width="1">
+    <ellipse cx="27.5" cy="26" rx="27.5" ry="26" stroke="none"/>
+    <ellipse cx="27.5" cy="26" rx="27" ry="25.5" fill="none"/>
+  </g>
+  <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(33)" fill="#fa5e1e" stroke="#707070" stroke-width="1">
+    <ellipse cx="27.5" cy="26" rx="27.5" ry="26" stroke="none"/>
+    <ellipse cx="27.5" cy="26" rx="27" ry="25.5" fill="none"/>
+  </g>
+</svg>
