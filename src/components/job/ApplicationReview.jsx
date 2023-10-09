@@ -76,7 +76,7 @@ const ApplicationReview = () => {
                     </div>
                     <div className="flex flex-col gap-2">
                       <h1 className="text-xl">Shift and Schedule</h1>
-                      <p className="font-bold bg-primaryLightBackground w-[100px] text-center p-2 rounded-lg">
+                      <p className="font-bold bg-primaryLightBackground w-[150px] text-center p-2 rounded-lg">
                         {job.shift}
                       </p>
                     </div>

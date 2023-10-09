@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import StatCard from "./StatCard";
 import JobCard from "./JobCard";
 import axios from "../../api/axios";
+import DiscriptionCard from "../job/DiscriptionCard";
+import { AiOutlineClose } from "react-icons/ai";
+import Discrip from "./Discrip";
 
 const MainContentEmployee = ({ user }) => {
+  const { state } = useLocation();
   const [jobs, setJobs] = useState([]);
+  const [discription, setDiscription] = useState("hidden");
+  const [disj, setDisj] = useState(state);
+  const navigate = useNavigate();
+  console.log(state);
 
   useEffect(() => {
     const getJobs = async () => {
@@ -17,7 +25,6 @@ const MainContentEmployee = ({ user }) => {
     getJobs();
   }, []);
 
-  // console.log(jobs);
   return (
     <div className="">
       <div className="flex flex-col justify-center items-center bg-[#FFFAF9]">
@@ -37,10 +44,26 @@ const MainContentEmployee = ({ user }) => {
             {jobs.map((job, index) => (
               <div
                 key={index}
-                className="flex justify-between border p-5 rounded-2xl bg-white"
+                className={`flex justify-between border font-bold p-5 rounded-2xl ${
+                  job[1].status == "Accepted"
+                    ? "bg-primaryLightBackground"
+                    : job[1].status == "Rejected"
+                    ? "bg-secondaryBackground "
+                    : "bg-white"
+                }`}
               >
                 <p>{job[1].job_name}</p>
-                <p>{job[1].status}</p>
+                <div className="flex gap-6 items-center">
+                  <button
+                    className={`border p-2 bg-secondary text-white`}
+                    onClick={() => {
+                      navigate("/dashboard-e-disc", { state: job[1].job_id });
+                    }}
+                  >
+                    View
+                  </button>
+                  <p>{job[1].status}</p>
+                </div>
               </div>
             ))}
           </div>

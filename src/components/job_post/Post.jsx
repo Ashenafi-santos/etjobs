@@ -172,7 +172,9 @@ const Post = () => {
                         Addis Ababa, Ethiopia
                       </option>
                       <option value="Adama, Ethiopia">Adama, Ethiopia</option>
-                      <option value="Hawasa, Ethiopia">Hawasa, Ethiopia</option>
+                      <option value="Hawassa, Ethiopia">
+                        Hawassa, Ethiopia
+                      </option>
                       <option value="Meqele, Ethiopia">Meqele, Ethiopia</option>
                       <option value="Ambo, Ethiopia">Ambo, Ethiopia</option>
                       <option value="Welkite, Ethiopia">
@@ -340,8 +342,10 @@ const Post = () => {
                         onChange={(e) => setExperience(e.target.value)}
                       >
                         <option value="Entry-Level">Entry-Level</option>
-                        <option value="Mid-Level">Mid-Level</option>
-                        <option value="Senior-Level">Senior-Level</option>
+                        <option value="1 year">1 year</option>
+                        <option value="2 years">2 years</option>
+                        <option value="3 years">3 years</option>
+                        <option value="4 years+">4 years+</option>
                       </select>
                     </div>
                     <div className="input flex flex-col gap-5">

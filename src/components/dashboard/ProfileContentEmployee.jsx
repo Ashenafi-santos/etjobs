@@ -33,7 +33,7 @@ const ProfileContentEmployee = ({ user }) => {
       const fData = new FormData();
       fData.append("cv", cv);
       await axios
-        .post(`/api/employee/upload-cv/${profile.id}`, fData)
+        .post(`/api/employee/upload-cv/${user.id}`, fData)
         .then((res) => {
           console.log(res);
         })

@@ -11,21 +11,19 @@ const FilterBox = ({
 }) => {
   const handelChange = async (e) => {
     await setVal(e.target.value);
-    applyChange(e);
-  };
-
-  const toggle = () => {
-    if (isOpen == title) {
-      setIsOpen("");
-    } else {
-      setIsOpen(title);
-    }
+    await applyChange(e);
   };
 
   return (
     <div
       className="flex flex-col justify-center items-center "
-      onClick={toggle}
+      onClick={() => {
+        if (isOpen == title) {
+          setIsOpen("");
+        } else {
+          setIsOpen(title);
+        }
+      }}
     >
       <div className="flex items-center gap-6 bg-primaryLightBackground p-2 rounded-lg border border-[#707070] cursor-pointer">
         <p>{title}</p>
@@ -35,17 +33,17 @@ const FilterBox = ({
         />
       </div>
       {isOpen == title ? (
-        <div className="options bg-[#F8F9FA] w-auto absolute top-[150px] text-center rounded-lg border border-[#707070] z-50">
+        <div className="options bg-[#F8F9FA] w-auto absolute top-[160px] text-center rounded-lg border border-[#707070] z-50">
           {options.map((option, index) => (
-            <div className="flex  items-center px-4 gap-1" key={index}>
-              <input
-                type="radio"
+            <div className="flex  items-center gap-1" key={index}>
+              <button
                 name={title}
                 value={option}
-                className="w-[20px] cursor-pointer"
+                className="min-w-[150px] w-full border cursor-pointer hover:bg-primary hover:text-white"
                 onClick={handelChange}
-              />
-              <label htmlFor={title}>{option}</label>
+              >
+                {option}
+              </button>
             </div>
           ))}
         </div>

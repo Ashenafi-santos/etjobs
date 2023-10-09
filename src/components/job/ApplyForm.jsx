@@ -97,7 +97,7 @@ const ApplyForm = () => {
           <div className="multi-input flex gap-11">
             <div className="input gap-3 border p-2 rounded-lg border-borderbg flex justify-center items-center">
               <input
-                type="text"
+                type="email"
                 required
                 placeholder="Email"
                 value={email}

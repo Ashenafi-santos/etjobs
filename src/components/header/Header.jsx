@@ -17,7 +17,9 @@ const Header = () => {
     if (sstate === "hidden") {
       setSstate("flex");
     } else {
-      setSstate("hidden");
+      setTimeout(() => {
+        setSstate("hidden");
+      }, 400);
     }
   };
 
@@ -25,7 +27,9 @@ const Header = () => {
     if (lstate === "hidden") {
       setLstate("flex");
     } else {
-      setLstate("hidden");
+      setTimeout(() => {
+        setLstate("hidden");
+      }, 400);
     }
   };
 

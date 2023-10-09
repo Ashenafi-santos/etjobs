@@ -12,6 +12,7 @@ import LoginEmployee from "./components/auth/LoginEmployee";
 import DashboardEmployee from "./components/dashboard/DashboardEmployee";
 import ApplyForm from "./components/job/ApplyForm";
 import ApplicationReview from "./components/job/ApplicationReview";
+import Discrip from "./components/dashboard/Discrip";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/review-application" element={<ApplicationReview />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard-e" element={<DashboardEmployee />} />
+        <Route path="/dashboard-e-disc" element={<Discrip />} />
       </Routes>
     </BrowserRouter>
   );

@@ -22,11 +22,12 @@ const JobCard = ({ job }) => {
   }, []);
 
   if (employer) {
-    const employerName = employer.name;
+    const employerName = employer.company_name;
     const position = job.required_position;
     const location = job.location;
     const time = job.create_at;
     const details = job.details;
+    const skills = job.skills;
     return (
       <div className="flex flex-col w-[500px] bg-white gap-5 justify-center px-7 py-3 rounded-3xl shadow">
         <div className="card-info flex gap-5">
@@ -42,16 +43,24 @@ const JobCard = ({ job }) => {
             <div className="max-w-[300px]">
               <p>{details.substring(0, 120)}...</p>
             </div>
+            <div className="flex gap-5">
+              <p className="bg-primaryLightBackground p-2 rounded-lg">
+                {job.job_type}
+              </p>
+              <p className="bg-primaryLightBackground p-2 rounded-lg">
+                {job.category}
+              </p>
+            </div>
           </div>
         </div>
         <div className="skills flex gap-5">
-          <p className="bg-primaryLightBackground p-2 rounded-lg">
-            UI designer
-          </p>
-          <p className="bg-primaryLightBackground p-2 rounded-lg">Figma</p>
-          <p className="bg-primaryLightBackground p-2 rounded-lg">
-            Landing Page
-          </p>
+          {skills.split(",").map((skill, index) => {
+            return (
+              <p className="bg-primaryLightBackground p-2 rounded-lg">
+                {skill}
+              </p>
+            );
+          })}
         </div>
         <div className="status flex justify-between items-center">
           <p>{time}</p>

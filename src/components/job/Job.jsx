@@ -6,6 +6,8 @@ import JobCard from "./JobCard";
 import DiscriptionCard from "./DiscriptionCard";
 import axios from "../../api/axios";
 import Pagination from "./Pagination";
+import { IoMdClose } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 function Loading() {
   return <h2>🌀 Loading...</h2>;
@@ -24,16 +26,18 @@ const Job = () => {
   const [education, setEducation] = useState("");
   const [location, setLocation] = useState("");
 
+  const navigate = useNavigate();
+
   const getJobs = async () => {
     const res = await axios
       .get("/api/jobs", {
         params: {
-          search,
-          shift,
-          education,
+          search: search,
+          shift: shift,
+          education: education,
           category: catagory,
-          location,
-          experience,
+          location: location,
+          experience: experience,
           job_type: jobType,
         },
       })
@@ -53,6 +57,9 @@ const Job = () => {
     e.preventDefault();
     getJobs();
   };
+  const applyChanges = () => {
+    getJobs();
+  };
 
   console.log(search, catagory);
 
@@ -64,7 +71,80 @@ const Job = () => {
   return (
     <>
       <Header setSearch={setSearch} applyChange={applyChange} />
-      <div className="job-section auto bg-secondaryLightBackground">
+      <div className="job-section auto p-2 bg-secondaryLightBackground">
+        <div className="flex justify-center gap-2">
+          {date != "" ? (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {date}
+              <IoMdClose
+                onClick={() => {
+                  setDate("");
+                  navigate("/jobs");
+                }}
+              />
+            </p>
+          ) : null}
+          {jobType != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {jobType}
+              <IoMdClose
+                onClick={() => {
+                  setJobType("");
+                }}
+              />
+            </p>
+          )}
+          {shift != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {shift}
+              <IoMdClose
+                onClick={() => {
+                  setShift("");
+                }}
+              />
+            </p>
+          )}
+          {catagory != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {catagory}
+              <IoMdClose
+                onClick={() => {
+                  setCatagory("");
+                }}
+              />
+            </p>
+          )}
+          {education != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {education}
+              <IoMdClose
+                onClick={() => {
+                  setEducation("");
+                }}
+              />
+            </p>
+          )}
+          {experience != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {experience}
+              <IoMdClose
+                onClick={() => {
+                  setExperience("");
+                }}
+              />
+            </p>
+          )}
+          {location != "" && (
+            <p className="flex items-center gap-2 bg-white px-2 rounded-2xl border">
+              {location}
+              <IoMdClose
+                onClick={() => {
+                  setLocation("");
+                }}
+              />
+            </p>
+          )}
+        </div>
         <div className="filter-section flex justify-center items-center h-[auto] flex-wrap gap-8 p-7">
           <FilterBox
             title={"Date Posted"}
